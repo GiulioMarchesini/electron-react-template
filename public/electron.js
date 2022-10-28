@@ -1,7 +1,5 @@
 //file per il Back end
-const electron = require("electron");
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require("path");
 const isDev = require("electron-is-dev");
 let mainWindow;
@@ -28,6 +26,11 @@ const createWindow = () => {
     if (isDev) mainWindow.webContents.openDevTools();//open dev tools
     else mainWindow.removeMenu();
 }
+
+//recive data from render.js (frontend)
+ipcMain.on('FrontToBack', (event, arg) => {
+    console.log(arg);
+})
 
 app.on("ready", () => {
     createWindow();

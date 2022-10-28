@@ -7,10 +7,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 //backend to frontend
 let varBackEnd = 0;
 
-window.electronAPI.funzFrontEnd((event, value) => {
+window.myAPI.funzFrontEnd((event, value) => {
   varBackEnd = value;
   doRendering();
 })
+
+//send data to backend
+// window.myAPI.sendVal('hi');
 
 const doRendering = () => {
   root.render(

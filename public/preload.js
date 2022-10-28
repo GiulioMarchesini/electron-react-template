@@ -7,7 +7,9 @@
 
 const { contextBridge, ipcRenderer } = require('electron')
 
-contextBridge.exposeInMainWorld('electronAPI', {
+contextBridge.exposeInMainWorld('myAPI', {
     //backend to frontend
     funzFrontEnd: (callback) => ipcRenderer.on('nomeEvento', callback),//cosi da non esporre direttamente ipcRenderer. potrebbe essere pericoloso se usato dall'utente
+    //frontend to backend
+    sendVal: (val) => ipcRenderer.send('FrontToBack', val)
 })
